@@ -27,7 +27,8 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            rb.transform.position += rb.transform.forward * Speed * Time.deltaTime;
+            
+            rb.AddForce(0, 0, Speed * Time.deltaTime, ForceMode.VelocityChange);
         }
 
         if (Input.GetKey(KeyCode.D))
@@ -42,7 +43,7 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.S))
         {
-            rb.transform.position -= rb.transform.forward * Speed * Time.deltaTime;
+            rb.AddForce(0, 0, Speed * -1 * Time.deltaTime, ForceMode.VelocityChange);
         }
 
         if (Input.GetKey(KeyCode.Space) && isGrounded)
