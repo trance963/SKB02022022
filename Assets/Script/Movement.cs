@@ -5,9 +5,9 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
 
-    public float Speed;
-    public float Sensitivity;
-    public float Jump;
+    public float Speed; // Скорость движения вперед и назад
+    public float Sensitivity; // Скорость движения в стороны
+    public float Jump; // Множитель прыжка
     public bool isGrounded;
     public Rigidbody rb;
 
@@ -19,37 +19,36 @@ public class Movement : MonoBehaviour
 
     void OnCollisionStay()
     {
-        isGrounded = true;
+        isGrounded = true; // проверяем на объекте ли мы
     }
 
     void FixedUpdate()
     {
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W)) // Движения
         {
-            
-            rb.AddForce(0, 0, Speed * Time.deltaTime, ForceMode.VelocityChange);
+            rb.transform.position += rb.transform.forward * Speed * Time.deltaTime; // rb.AddForce(0, 0, Speed * Time.deltaTime, ForceMode.VelocityChange) вариант с силой
         }
 
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D)) // Движения
         {
             rb.transform.position += rb.transform.right * Sensitivity * Time.deltaTime;
         }
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A)) // Движения
         {
             rb.transform.position -= rb.transform.right * Sensitivity * Time.deltaTime;
         }
 
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S)) // Движения
         {
-            rb.AddForce(0, 0, Speed * -1 * Time.deltaTime, ForceMode.VelocityChange);
+            rb.transform.position -= rb.transform.forward * Speed * Time.deltaTime; // rb.AddForce(0, 0, Speed * -1 * Time.deltaTime, ForceMode.VelocityChange);
         }
 
-        if (Input.GetKey(KeyCode.Space) && isGrounded)
+        if (Input.GetKey(KeyCode.Space) && isGrounded) // Прыжок
         {
             rb.AddForce(transform.up * Jump, ForceMode.Impulse);
-            isGrounded = false;
+            isGrounded = false; // Прыгаем только от объектов
         }
     }
 }

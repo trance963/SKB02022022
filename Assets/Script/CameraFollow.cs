@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public GameObject Coal;
-    private Vector3 offset;
+    private Vector3 offset; // примитивнее некуда
 
     void Start()
     {
