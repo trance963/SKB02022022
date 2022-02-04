@@ -6,7 +6,7 @@ public class Movement : MonoBehaviour
 {
 
     public float Speed;
-    public int Sensitivity = 10;
+    public float Sensitivity;
     public float Jump;
     public Rigidbody rb;
 
