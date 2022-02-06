@@ -5,9 +5,28 @@ using UnityEngine.UI;
 
 public class Finish : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+    public Movement movement;
+    public GameObject WinScreen;
+    public GameObject Button;
+    public Coal coal;
+
+    void Start()
     {
-        if (!collision.collider.TryGetComponent(out Coal coal)) return;
-        coal.ReachFinish();
+        Button btn = Button.GetComponent<Button>();
+        btn.onClick.AddListener(TaskOnClick);
+    }
+
+    void TaskOnClick()
+    {
+        coal.NextLevel();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out Coal coal))
+        {
+            coal.OnCoalReachedFinish();
+            WinScreen.SetActive(true);
+        }
     }
 }
