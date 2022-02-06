@@ -9,6 +9,7 @@ public class Coal : MonoBehaviour
 {
     public Rigidbody Rigidbody;
     public Movement Controls;
+    public GameObject LoseScreen;
 
     public enum State
     {
