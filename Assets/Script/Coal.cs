@@ -60,8 +60,6 @@ public class Coal : MonoBehaviour
 
     public void NextLevel() // новый уровень
     {
-        if (SceneManager.GetActiveScene().buildIndex >= 2) SceneManager.LoadScene(0);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         LevelIndex++;
     }
 
@@ -70,7 +68,7 @@ public class Coal : MonoBehaviour
         ReloadLevel(); 
     }
 
-    public int LevelIndex // сохраняем уровни
+    public int LevelIndex
     {
         get => PlayerPrefs.GetInt(LevelIndexKey, 0);
 
@@ -80,6 +78,5 @@ public class Coal : MonoBehaviour
             PlayerPrefs.Save();
         }
     }
-
     private const string LevelIndexKey = "LevelIndex";
 }

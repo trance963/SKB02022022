@@ -27,7 +27,7 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W)) // Движения
         {
-            rb.AddForce(0, 0, Speed * Time.deltaTime, ForceMode.VelocityChange); // rb.transform.position += rb.transform.forward * Speed * Time.deltaTime вариант с силой
+            rb.AddForce(0, 0, Speed * Time.deltaTime, ForceMode.VelocityChange);
             rb.GetComponent<Animator>().SetTrigger("Walk"); // состояние анимации ходьбы
         }
 
@@ -45,7 +45,7 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.S)) // Движения
         {
-            rb.AddForce(0, 0, Speed * -1 * Time.deltaTime, ForceMode.VelocityChange);
+            rb.AddForce(Vector3.zero, ForceMode.VelocityChange);
         }
 
         if (Input.GetKey(KeyCode.Space) && isGrounded) // Прыжок
@@ -53,5 +53,12 @@ public class Movement : MonoBehaviour
             rb.AddForce(transform.up * Jump, ForceMode.Impulse);
             isGrounded = false; // Прыгаем только от объектов
         }
+
+        if (Input.GetKey(KeyCode.Space)) // Анимация
+        {
+            rb.GetComponent<Animator>().SetTrigger("Jump");
+        }
+
+        else rb.GetComponent<Animator>().SetTrigger("Idle");
     }
 }
