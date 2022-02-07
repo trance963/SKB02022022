@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour
     public float Speed; // Скорость движения вперед и назад
     public float Sensitivity; // Скорость движения в стороны
     public float Jump; // Множитель прыжка
-    public bool isGrounded;
+    public bool isGrounded; // проверка земли
     public Rigidbody rb;
 
     private void Start()
@@ -27,8 +27,11 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W)) // Движения
         {
-            rb.transform.position += rb.transform.forward * Speed * Time.deltaTime; // rb.AddForce(0, 0, Speed * Time.deltaTime, ForceMode.VelocityChange) вариант с силой
+            rb.AddForce(0, 0, Speed * Time.deltaTime, ForceMode.VelocityChange); // rb.transform.position += rb.transform.forward * Speed * Time.deltaTime вариант с силой
+            rb.GetComponent<Animator>().SetTrigger("Walk"); // состояние анимации ходьбы
         }
+
+        else rb.GetComponent<Animator>().SetTrigger("Idle");
 
         if (Input.GetKey(KeyCode.D)) // Движения
         {
@@ -42,7 +45,7 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.S)) // Движения
         {
-            rb.transform.position -= rb.transform.forward * Speed * Time.deltaTime; // rb.AddForce(0, 0, Speed * -1 * Time.deltaTime, ForceMode.VelocityChange);
+            rb.AddForce(0, 0, Speed * -1 * Time.deltaTime, ForceMode.VelocityChange);
         }
 
         if (Input.GetKey(KeyCode.Space) && isGrounded) // Прыжок
@@ -50,5 +53,7 @@ public class Movement : MonoBehaviour
             rb.AddForce(transform.up * Jump, ForceMode.Impulse);
             isGrounded = false; // Прыгаем только от объектов
         }
+
+        var speed = rb.velocity.magnitude;
     }
 }

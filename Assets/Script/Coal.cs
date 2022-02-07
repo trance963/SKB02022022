@@ -10,18 +10,11 @@ public class Coal : MonoBehaviour
     public Rigidbody Rigidbody;
     public Movement Controls;
     public GameObject LoseScreen;
+    public GameObject WinScreen;
     public GameObject Restart;
     public GameObject NextLVL;
 
-    void Start()
-    {
-        Button btn = Restart.GetComponent<Button>();
-        Button btn1 = NextLVL.GetComponent<Button>();
-        btn.onClick.AddListener(TaskOnClickRestart);
-        btn1.onClick.AddListener(TaskOnClickRestart);
-    }
-
-    public enum State
+    public enum State // игровые состояния
     {
         Playing,
         Won,
@@ -30,7 +23,15 @@ public class Coal : MonoBehaviour
 
     public State CurrentState { get; private set; }
 
-    public void OnCoalDied()
+    void Start()
+    {
+        Button btn = Restart.GetComponent<Button>();
+        btn.onClick.AddListener(TaskOnClickRestart); // слушатель
+        Button btn1 = NextLVL.GetComponent<Button>();
+        btn1.onClick.AddListener(NextLevel); //слушатель
+    }
+
+    public void OnCoalDied() // метод смерти
     {
         if (CurrentState != State.Playing) return;
 
@@ -38,9 +39,10 @@ public class Coal : MonoBehaviour
         Controls.enabled = false;
         Debug.Log("GameOver!");
         Controls.rb.constraints = RigidbodyConstraints.FreezeAll;
+        LoseScreen.SetActive(true);
     }
 
-    public void OnCoalReachedFinish()
+    public void OnCoalReachedFinish() // метод финиша
     {
         if (CurrentState != State.Playing) return;
 
@@ -48,14 +50,15 @@ public class Coal : MonoBehaviour
         Controls.enabled = false;
         Debug.Log("YouWon!");
         Controls.rb.constraints = RigidbodyConstraints.FreezeAll;
+        WinScreen.SetActive(true);
     }
 
-    public void ReloadLevel()
+    public void ReloadLevel() // перезагрузка сцены
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void NextLevel()
+    public void NextLevel() // новый уровень
     {
         if (SceneManager.GetActiveScene().buildIndex >= 2) SceneManager.LoadScene(0);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -64,10 +67,10 @@ public class Coal : MonoBehaviour
 
     public void TaskOnClickRestart()
     {
-        ReloadLevel();
+        ReloadLevel(); 
     }
 
-    public int LevelIndex
+    public int LevelIndex // сохраняем уровни
     {
         get => PlayerPrefs.GetInt(LevelIndexKey, 0);
 

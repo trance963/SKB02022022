@@ -10,6 +10,6 @@ public class ThisLVL : MonoBehaviour
 
     private void Start()
     {
-        Text.text = "Level " + (coal.LevelIndex + 1).ToString();
+        Text.text = "Level " + (coal.LevelIndex + 1).ToString(); //получаем номер уровня
     }
 }
