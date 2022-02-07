@@ -10,6 +10,16 @@ public class Coal : MonoBehaviour
     public Rigidbody Rigidbody;
     public Movement Controls;
     public GameObject LoseScreen;
+    public GameObject Restart;
+    public GameObject NextLVL;
+
+    void Start()
+    {
+        Button btn = Restart.GetComponent<Button>();
+        Button btn1 = NextLVL.GetComponent<Button>();
+        btn.onClick.AddListener(TaskOnClickRestart);
+        btn1.onClick.AddListener(TaskOnClickRestart);
+    }
 
     public enum State
     {
