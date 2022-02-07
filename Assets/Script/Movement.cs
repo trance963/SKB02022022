@@ -53,7 +53,5 @@ public class Movement : MonoBehaviour
             rb.AddForce(transform.up * Jump, ForceMode.Impulse);
             isGrounded = false; // Прыгаем только от объектов
         }
-
-        var speed = rb.velocity.magnitude;
     }
 }
