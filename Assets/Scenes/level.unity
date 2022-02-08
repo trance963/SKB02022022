@@ -382,7 +382,8 @@ PrefabInstance:
       propertyPath: Fireball
       value: 
       objectReference: {fileID: 2041936377}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4975108183430405603, guid: 3a9309ec256a1544ca2206eb5349363b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3a9309ec256a1544ca2206eb5349363b, type: 3}
 --- !u!1 &1024573476 stripped
 GameObject:
