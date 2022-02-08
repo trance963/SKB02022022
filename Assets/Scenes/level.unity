@@ -358,6 +358,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blob(origin) Variant 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4304223869005725530, guid: 3a9309ec256a1544ca2206eb5349363b, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 303255142}
+    - target: {fileID: 4304223869005725530, guid: 3a9309ec256a1544ca2206eb5349363b, type: 3}
+      propertyPath: coal
+      value: 
+      objectReference: {fileID: 303255138}
+    - target: {fileID: 4304223869005725530, guid: 3a9309ec256a1544ca2206eb5349363b, type: 3}
+      propertyPath: Fireball
+      value: 
+      objectReference: {fileID: 2041936377}
     - target: {fileID: 4799125677387946790, guid: 3a9309ec256a1544ca2206eb5349363b, type: 3}
       propertyPath: rb
       value: 
