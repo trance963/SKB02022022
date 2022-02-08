@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,12 +15,10 @@ public class Coal : MonoBehaviour
     public GameObject Restart;
     public GameObject NextLVL;
     public GameObject StartGame;
-    public GameObject ExitMenu;
-    public GameObject ExitWin;
-    public GameObject ExitLose;
     public GameObject StartGameUI;
     public GameObject ThisLVL;
     public GameObject CurrentSpeed;
+    public GameObject ExitBut;
 
     public enum State // игровые состояния
     {
@@ -38,10 +37,17 @@ public class Coal : MonoBehaviour
         btn1.onClick.AddListener(NextLevel); //слушатель
         Button btn2 = StartGame.GetComponent<Button>();
         btn2.onClick.AddListener(TaskOnClickStartGame); // слушатель
-        Button btn4 = ExitWin.GetComponent<Button>();
-        btn4.onClick.AddListener(TaskOnClickExit); //слушатель
-        Button btn5 = ExitLose.GetComponent<Button>();
-        btn5.onClick.AddListener(TaskOnClickExit); //слушатель
+        Button btn3 = StartGame.GetComponent<Button>();
+        btn3.onClick.AddListener(TaskOnClickStartGame); // слушатель
+        Button btn4 = ExitBut.GetComponent<Button>();
+        btn4.onClick.AddListener(TaskOnClickExitGame); // слушатель
+
+    }
+
+    private void TaskOnClickExitGame()
+    {
+        Debug.Log("Exit pressed!");
+        Application.Quit();
     }
 
     public void OnCoalDied() // метод смерти
@@ -53,6 +59,7 @@ public class Coal : MonoBehaviour
         Debug.Log("GameOver!");
         Controls.rb.constraints = RigidbodyConstraints.FreezeAll;
         LoseScreen.SetActive(true);
+        ExitBut.SetActive(true);
     }
 
     public void OnCoalReachedFinish() // метод финиша
@@ -64,6 +71,7 @@ public class Coal : MonoBehaviour
         Debug.Log("YouWon!");
         Controls.rb.constraints = RigidbodyConstraints.FreezeAll;
         WinScreen.SetActive(true);
+        ExitBut.SetActive(true);
     }
 
     public void ReloadLevel() // перезагрузка сцены
@@ -97,17 +105,11 @@ public class Coal : MonoBehaviour
     public void TaskOnClickStartGame()
     {
         StartGameUI.SetActive(false);
-        ThisLVL.SetActive(true);
         CurrentSpeed.SetActive(true);
         Controls.enabled = true;
+        ExitBut.SetActive(false);
         Rigidbody.constraints = RigidbodyConstraints.None;
         Rigidbody.freezeRotation = enabled;
-    }
-
-    private void TaskOnClickExit()
-    {
-        Debug.Log("Exit pressed!");
-        Application.Quit();
     }
 }
 
