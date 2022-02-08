@@ -8,7 +8,7 @@ public class LevelGenerator : MonoBehaviour
     public GameObject[] BlobPrefabs;
     public int MinPlatforms;
     public int MaxPlatforms;
-    public float DistanceBwtweenPlatforms;   //platform.transform.localPosition = new Vector3(RandomRange(random, 0.5f, -0.5f), 15 + ExtraH, 0);
+    public float DistanceBwtweenPlatforms;
     public Coal coal;
     public float ExtraH = 0.25f;
 

@@ -13,8 +13,7 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
-        rb = this.GetComponent<Rigidbody>();
-        rb.freezeRotation = enabled;
+        rb = GetComponent<Rigidbody>();
     }
 
     void OnCollisionStay()
@@ -30,8 +29,6 @@ public class Movement : MonoBehaviour
             rb.AddForce(0, 0, Speed * Time.deltaTime, ForceMode.VelocityChange);
             rb.GetComponent<Animator>().SetTrigger("Walk"); // состояние анимации ходьбы
         }
-
-        else rb.GetComponent<Animator>().SetTrigger("Idle");
 
         if (Input.GetKey(KeyCode.D)) // Движения
         {
@@ -52,6 +49,7 @@ public class Movement : MonoBehaviour
         {
             rb.AddForce(transform.up * Jump, ForceMode.Impulse);
             isGrounded = false; // Прыгаем только от объектов
+            rb.GetComponent<Animator>().SetTrigger("Idle");
         }
 
         if (Input.GetKey(KeyCode.Space)) // Анимация
